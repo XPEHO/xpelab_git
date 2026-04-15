@@ -138,7 +138,7 @@ git config --global push.autoSetupRemote true
 
 3. Essayez de fusionner la branche précédente dans la branche principale. Vous devriez rencontrer un conflit de fusion.
 
-### Excercice 5 : Utiliser le rebase
+### Exercice 5 : Utiliser le rebase
 
 1. Créez une nouvelle branche à partir de la branche principale et faites des modifications.
 
@@ -149,6 +149,10 @@ git config --global push.autoSetupRemote true
 4. Utilisez la commande `git rebase` pour réappliquer vos commits sur la branche principale.
 
 5. Résolvez les conflits de rebase si nécessaire, puis poussez les modifications rebased vers le dépôt distant.
+
+> **Parlons un peu du merge commit**
+> 
+> Un merge commit est un commit spécial qui est créé lorsqu'une branche est fusionnée dans une autre branche. Il contient les modifications de la branche fusionnée ainsi que les modifications de la branche cible. Le merge commit a généralement deux parents : le dernier commit de la branche fusionnée et le dernier commit de la branche cible avant la fusion.
 
 ### Exercice 6 : Utiliser le stash
 
