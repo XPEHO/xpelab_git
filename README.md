@@ -91,7 +91,7 @@ git commit -m "Initial commit: Add README.md"
 
 1. Clonez ce dépôt sur votre machine locale :
 ```bash
-git clone https://github.com/XPEHO/xpelab_git.git
+git clone git@github.com:XPEHO/xpelab_git.git
 ```
 
 2. Naviguez dans le répertoire cloné :
