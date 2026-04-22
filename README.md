@@ -59,6 +59,8 @@ Et bien d'autres...
 
 ![how-git-works](./docs/how_git_works.webp)
 
+![workflow](./docs/workflows.gif)
+
 ## Apprendre Git
 
 [learngitbranching](https://learngitbranching.js.org/) est un excellent outil interactif pour apprendre Git. Il propose des exercices pratiques pour comprendre les concepts de base et les commandes Git.
