@@ -36,6 +36,7 @@ Voici quelques termes clés liés à Git :
 - **Merge** : Le processus de fusion de deux branches pour intégrer les modifications d'une branche dans une autre.
 - **Pull Request (PR)** : Une demande de tirage est une proposition de modification qui permet à d'autres développeurs de revoir et de discuter des changements avant de les fusionner dans la branche principale (spécifique Github).
 - **Clone** : Copier un dépôt Git existant sur votre machine locale.
+- **Fetch** : Récupérer les modifications d'un dépôt distant sans les intégrer dans votre branche locale.
 - **Push** : Envoyer les commits locaux vers un dépôt distant.
 - **Pull** : Récupérer les modifications d'un dépôt distant et les intégrer dans votre branche locale.
 - **Staging Area** : Un espace temporaire où les modifications sont préparées avant d'être commités.
@@ -62,15 +63,15 @@ Et bien d'autres...
 
 [learngitbranching](https://learngitbranching.js.org/) est un excellent outil interactif pour apprendre Git. Il propose des exercices pratiques pour comprendre les concepts de base et les commandes Git.
 
-## Cheat sheet
+### Cheat sheet
 
 [git-cheat-sheet](./docs/git-cheat-sheet.pdf)
 
-## En pratique
+### En pratique
 
 On va faire du Git ! On va créer un dépôt, faire des commits, créer des branches, fusionner des branches, et résoudre des conflits. On va aussi utiliser GitHub pour collaborer avec d'autres développeurs.
 
-### Exercice 1 : Créer un dépôt Git
+### Créer un dépôt Git
 
 1. Ouvrez votre terminal et naviguez vers le répertoire où vous souhaitez créer votre projet.
 2. Exécutez la commande suivante pour initialiser un nouveau dépôt Git :
@@ -87,7 +88,7 @@ git add README.md
 git commit -m "Initial commit: Add README.md"
 ```
 
-### Exercice 2 : Clonez ce repo sur Github
+### Cloner un dépôt Git
 
 1. Clonez ce dépôt sur votre machine locale :
 ```bash
@@ -99,7 +100,7 @@ git clone git@github.com:XPEHO/xpelab_git.git
 cd xpelab_git
 ```
 
-### Exercice 3 : Créer une branche et faire une pull request
+### Créer une branche et faire une pull request
 
 1. Créez une nouvelle branche pour travailler sur une fonctionnalité :
 
@@ -130,7 +131,7 @@ git config --global push.autoSetupRemote true
 
 4. Créez une pull request sur GitHub pour fusionner votre branche dans la branche principale.
 
-### Exercice 4 : Résoudre un conflit de fusion
+### Résoudre un conflit de fusion
 
 1. Créez une nouvelle branche à partir de la branche principale et faites des modifications dans le même fichier que celui modifié dans la branche précédente.
 
@@ -138,7 +139,7 @@ git config --global push.autoSetupRemote true
 
 3. Essayez de fusionner la branche précédente dans la branche principale. Vous devriez rencontrer un conflit de fusion.
 
-### Exercice 5 : Utiliser le rebase
+### Utiliser le rebase
 
 1. Créez une nouvelle branche à partir de la branche principale et faites des modifications.
 
@@ -154,7 +155,7 @@ git config --global push.autoSetupRemote true
 > 
 > Un merge commit est un commit spécial qui est créé lorsqu'une branche est fusionnée dans une autre branche. Il contient les modifications de la branche fusionnée ainsi que les modifications de la branche cible. Le merge commit a généralement deux parents : le dernier commit de la branche fusionnée et le dernier commit de la branche cible avant la fusion.
 
-### Exercice 6 : Utiliser le stash
+### Utiliser le stash
 
 1. Faites des modifications sur la branche principale sans les committer.
 
@@ -164,7 +165,7 @@ git config --global push.autoSetupRemote true
 
 4. Sortez les modifications stashed et appliquez-les à votre branche locale avec `git stash pop`.
 
-## Exercice 7 : Annuler un add ou un commit
+### Annuler un add ou un commit
 
 1. Faites des modifications dans un fichier et ajoutez-le au staging area avec `git add`.
 
@@ -182,7 +183,7 @@ git reset --soft HEAD~1
 
 Les modifications du commit annulé seront conservées dans le staging area, vous permettant de les modifier ou de les committer à nouveau.
 
-## Exercice 8 : Annuler toutes vos modifications (DANGER)
+### Annuler toutes vos modifications (DANGER)
 
 1. Faites des modifications dans un fichier.
 
@@ -194,7 +195,7 @@ Les modifications du commit annulé seront conservées dans le staging area, vou
 git reset --hard HEAD
 ```
 
-## Exercice 9 : Annuler un commit déjà poussé (DANGER)
+### Annuler un commit déjà poussé (DANGER)
 
 1. Faites des modifications dans un fichier et commitez-les.
 
@@ -206,9 +207,17 @@ git reset --hard HEAD
 git revert <commit-hash>
 ```
 
-## Exercice 10 : Le rebase interactif
+### Récupérer un fichier sur une autre branche
 
-### Squash des commits
+Si vous souhaitez récupérer un fichier spécifique d'une autre branche, utilisez la commande `git checkout` avec le nom de la branche et le chemin du fichier :
+
+```bash
+git checkout <branch-name> -- <file-path>
+```
+
+### Le rebase interactif
+
+**Squash des commits**
 
 1. Faites plusieurs commits pour une fonctionnalité ou une correction de bug.
 
@@ -220,7 +229,7 @@ git rebase -i HEAD~n
 
 Où `n` est le nombre de commits que vous souhaitez inclure dans le rebase interactif.
 
-### Changer l'ordre des commits, modifier les messages de commit, ou supprimer des commits
+**Changer l'ordre des commits, modifier les messages de commit, ou supprimer des commits**
 
 1. Utilisez la commande `git rebase -i` pour lancer un rebase interactif et modifier l'ordre des commits, les messages de commit, ou supprimer des commits :
 
@@ -230,7 +239,7 @@ git rebase -i HEAD~n
 
 Où `n` est le nombre de commits que vous souhaitez inclure dans le rebase interactif.
 
-## Exercice 11 : Ouvrir un commit en deux
+### Ouvrir un commit en deux
 
 1. Faites un commit avec plusieurs modifications.
 
@@ -241,3 +250,65 @@ Où `n` est le nombre de commits que vous souhaitez inclure dans le rebase inter
 4. Répétez le processus pour les modifications restantes afin de créer un deuxième commit.
 
 5. Poussez les commits vers le dépôt distant.
+
+### L'index des branches
+
+1. Utilisez la commande `git branch` pour afficher la liste des branches dans votre dépôt Git.
+
+2. Utilisez la commande `git fetch` pour récupérer les branches distantes et les mettre à jour dans votre dépôt local.
+
+3. Utilisez la commande `git branch -a` pour afficher la liste complète des branches locales et distantes.
+
+### Utiliser les tags
+
+1. Créez un tag pour marquer une version de release dans votre dépôt Git :
+
+```bash
+git tag -a v1.0 -m "Release version 1.0"
+```
+
+2. Poussez le tag vers le dépôt distant :
+
+```bash
+git push origin v1.0
+```
+
+### Voir les différences
+
+1. Utilisez la commande `git diff` pour voir les différences entre les modifications non commités et le dernier commit :
+
+```bash
+git diff
+```
+
+2. Utilisez la commande `git diff <commit-hash>` pour voir les différences entre un commit spécifique et le dernier commit :
+
+```bash
+git diff <commit-hash>
+```
+
+3. Utilisez la commande `git diff <branch-name>` pour voir les différences entre une branche spécifique et la branche actuelle :
+
+```bash
+git diff <branch-name>
+```
+
+4. Afficher les noms des fichiers différents entre deux branches :
+
+```bash
+git diff --name-only <branch1> <branch2>
+```
+
+### Voir l'historique des commits
+
+1. Utilisez la commande `git log` pour voir l'historique des commits dans votre dépôt Git :
+
+```bash
+git log
+```
+
+2. Afficher le graphique de l'historique des commits avec les branches et les merges :
+
+```bash
+git log --graph --oneline --all
+```
